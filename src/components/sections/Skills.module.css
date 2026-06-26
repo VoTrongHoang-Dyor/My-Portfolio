@@ -1,0 +1,142 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.card {
+  border-radius: 20px;
+  padding: 22px 22px 26px;
+  box-shadow: var(--shadow);
+}
+
+.head {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+}
+
+/* ── Tag cloud ──────────────────────────────────────────────────────────── */
+.cloud {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 9px 10px;
+  padding: 12px 4px 6px;
+}
+
+/* Soft accent haze behind the cluster — the "cloud" backdrop */
+.cloudGlow {
+  position: absolute;
+  inset: -8px;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(6px);
+}
+
+.chip {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  user-select: none;
+  will-change: transform;
+  animation-name: drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition: background 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+/* Pause the drift and highlight on hover */
+.chip:hover {
+  animation-play-state: paused;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--glass-border-strong);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.chip img {
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ── Size tiers (the cloud's varied weights) ────────────────────────────── */
+.sizeSm {
+  font-size: 12px;
+  padding: 5px 11px;
+}
+.sizeSm img {
+  width: 15px;
+  height: 15px;
+}
+
+.sizeMd {
+  font-size: 13.5px;
+  padding: 7px 13px;
+}
+.sizeMd img {
+  width: 18px;
+  height: 18px;
+}
+
+.sizeLg {
+  font-size: 15.5px;
+  padding: 9px 16px;
+}
+.sizeLg img {
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(-3.5px);
+  }
+  to {
+    transform: translateY(3.5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

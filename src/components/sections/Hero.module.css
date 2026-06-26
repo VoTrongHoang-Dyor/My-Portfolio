@@ -1,0 +1,211 @@
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 28px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* ── Portrait ─────────────────────────────────────────────────────────────── */
+.portraitCol {
+  position: relative;
+}
+
+.portraitGlow {
+  position: absolute;
+  inset: -30px;
+  background: radial-gradient(60% 60% at 60% 25%, rgba(124, 131, 255, 0.45), transparent 70%);
+  filter: blur(10px);
+}
+
+.portraitFrame {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border-strong);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.badge {
+  position: absolute;
+  bottom: -16px;
+  left: -16px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: rgba(12, 16, 34, 0.72);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+}
+
+.badgeIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: rgba(124, 131, 255, 0.18);
+  color: #aeb4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.badgeTitle {
+  font-weight: 700;
+  font-size: 13.5px;
+}
+.badgeSub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Text ─────────────────────────────────────────────────────────────────── */
+.textCol {
+  position: relative;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 999px;
+  padding: 7px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7c83ff;
+  box-shadow: 0 0 0 4px rgba(124, 131, 255, 0.22);
+}
+
+.title {
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5.2vw, 3.9rem);
+  line-height: 1.03;
+  letter-spacing: -2px;
+  margin: 22px 0 0;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 540px;
+  margin: 22px 0 0;
+}
+.subtitle strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  background: #7c83ff;
+  color: #0a0c1a;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: 13px;
+  box-shadow: 0 16px 40px -14px rgba(124, 131, 255, 0.8);
+  transition: transform 0.2s ease;
+}
+.btnPrimary:hover {
+  transform: translateY(-2px);
+}
+
+.btnSecondary {
+  background: var(--glass);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: 13px;
+  border: 1px solid var(--glass-border-strong);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.btnSecondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Scroll hint ──────────────────────────────────────────────────────────── */
+.scrollHint {
+  margin: 56px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.scrollArrow {
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@media (max-width: 880px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .portraitCol {
+    max-width: 360px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollArrow {
+    animation: none;
+  }
+}

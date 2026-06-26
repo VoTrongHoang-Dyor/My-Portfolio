@@ -1,0 +1,286 @@
+.block {
+  margin-top: 56px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.heading {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  letter-spacing: -0.6px;
+  margin: 8px 0 0;
+}
+
+/* ── Light "Botpress" shell embedded in the dark page ──────────────────── */
+.shell {
+  --ink: #1f2430;
+  --ink-soft: #5b626e;
+  --line: #e7e8ec;
+
+  max-width: 920px;
+  margin: 0 auto;
+  background: #f7f7f8;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.6);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 18px;
+}
+
+/* ── Left list ─────────────────────────────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  padding: 12px 14px 17px;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink-soft);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+/* 5s auto-rotate progress bar under the active item */
+.progress {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 7px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(31, 36, 48, 0.1);
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  transform-origin: left center;
+  animation-name: grow;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.item:hover {
+  background: #eeeff2;
+}
+
+.itemActive {
+  background: #ffffff;
+  color: var(--ink);
+  border-left-color: #2563eb;
+  box-shadow: 0 2px 10px -4px rgba(31, 36, 48, 0.18);
+}
+
+.logo {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.itemName {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.itemLevel {
+  margin-left: auto;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #9aa1ad;
+  white-space: nowrap;
+}
+.itemActive .itemLevel {
+  color: var(--ink-soft);
+}
+
+/* ── Right panel ───────────────────────────────────────────────────────── */
+.panel {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 30px 30px 32px;
+  min-height: 360px;
+  display: flex;
+  align-items: stretch;
+}
+
+.card {
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.cardName {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin: 16px 0 0;
+}
+
+.cardDesc {
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  margin: 14px 0 0;
+  max-width: 52ch;
+}
+
+/* ── Code sample (dark mini-editor on the light card) ──────────────────── */
+.code {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1c2230;
+  background: #0d1117;
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.7);
+}
+
+.codeBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: #161b22;
+  border-bottom: 1px solid #1c2230;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #2d333b;
+}
+.dots i:nth-child(1) {
+  background: #ff5f57;
+}
+.dots i:nth-child(2) {
+  background: #febc2e;
+}
+.dots i:nth-child(3) {
+  background: #28c840;
+}
+
+.codeLang {
+  margin-left: auto;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 11.5px;
+  letter-spacing: 0.4px;
+  color: #8b949e;
+}
+
+.pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c9d1d9;
+  tab-size: 2;
+}
+.pre code {
+  font: inherit;
+  white-space: pre;
+}
+
+/* ── Mobile: stack; left becomes a horizontal scroll row of chips ──────── */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .list {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .item {
+    flex: 0 0 auto;
+    width: auto;
+    border-left: 0;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    padding: 9px 16px 14px;
+    background: #ffffff;
+  }
+  .itemActive {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px #2563eb inset;
+  }
+  /* on chips, the per-item level label is noise — hide it */
+  .itemLevel {
+    display: none;
+  }
+  /* keep the progress bar inside the narrower chip */
+  .progress {
+    left: 12px;
+    right: 12px;
+    bottom: 5px;
+  }
+
+  .panel {
+    min-height: 210px;
+    padding: 26px 22px;
+  }
+}

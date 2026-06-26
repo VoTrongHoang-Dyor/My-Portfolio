@@ -1,0 +1,47 @@
+.card {
+  border-radius: 28px;
+  padding: 48px 44px;
+  box-shadow: var(--shadow);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.lead {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+  line-height: 1.4;
+  letter-spacing: -0.6px;
+  margin: 0;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.body {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 22px 0 0;
+  max-width: 640px;
+}
+.body strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .card {
+    padding: 36px 26px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

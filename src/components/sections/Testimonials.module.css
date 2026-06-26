@@ -1,0 +1,68 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.card {
+  position: relative;
+  border-radius: 22px;
+  padding: 28px 26px 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.quoteMark {
+  font-family: Georgia, serif;
+  font-size: 56px;
+  line-height: 0.6;
+  height: 28px;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.quote {
+  margin: 14px 0 0;
+  font-size: 14.8px;
+  line-height: 1.62;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.role {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+}
