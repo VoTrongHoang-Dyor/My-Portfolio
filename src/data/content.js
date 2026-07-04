@@ -315,18 +315,24 @@ done`,
 export const testimonials = [
   {
     role: 'Technical Lead',
+    name: 'Teryn Cael',
+    avatar: '/testimonials/technical-lead.jpg',
     accent: '#5b4ee8',
     quote:
       'He has strong systems thinking and tends to tackle problems at the root rather than just patching symptoms. I really value his self-learning ability and his drive to understand how things truly work. One thing to improve: he sometimes overthinks before getting started, so his progress doesn’t always match his potential.',
   },
   {
     role: 'Colleague',
+    name: 'Zaren Vance',
+    avatar: '/testimonials/colleague.jpg',
     accent: '#3fae6e',
     quote:
       'He’s easy to work with — always open to discussion and genuinely willing to listen to other perspectives. He often brings thoughtful, in-depth ideas, especially around product and security. That said, when presenting, he could be more concise and structured so others can follow along more easily.',
   },
   {
     role: 'Product Manager / CEO',
+    name: 'Ives Sterling',
+    avatar: '/testimonials/product-manager-ceo.jpg',
     accent: '#d98a3a',
     quote:
       'He doesn’t just care about getting tasks done — he wants to build products that deliver real value. He’s accountable and consistently looks for ways to improve after every setback. If he keeps building his technical foundation and stays disciplined in execution, he has the potential to grow into a genuinely strong engineer or product builder.',

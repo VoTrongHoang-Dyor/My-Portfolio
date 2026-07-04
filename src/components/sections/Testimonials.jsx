@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { testimonials } from '@/data/content';
 import styles from './Testimonials.module.css';
 
@@ -15,10 +16,23 @@ export default function Testimonials() {
             </span>
             <blockquote className={styles.quote}>{t.quote}</blockquote>
             <figcaption className={styles.who}>
-              <span className={styles.avatar} style={{ background: `${t.accent}26`, color: t.accent }}>
-                {t.role.charAt(0)}
+              {t.avatar ? (
+                <Image
+                  src={t.avatar}
+                  alt={t.name}
+                  width={36}
+                  height={36}
+                  className={styles.avatar}
+                />
+              ) : (
+                <span className={styles.avatar} style={{ background: `${t.accent}26`, color: t.accent }}>
+                  {t.role.charAt(0)}
+                </span>
+              )}
+              <span className={styles.whoText}>
+                {t.name && <span className={styles.name}>{t.name}</span>}
+                <span className={styles.role}>{t.role}</span>
               </span>
-              <span className={styles.role}>{t.role}</span>
             </figcaption>
           </figure>
         ))}
