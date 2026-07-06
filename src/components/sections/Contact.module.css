@@ -85,3 +85,49 @@
     padding: 44px 28px;
   }
 }
+
+@media (max-width: 480px) {
+  .section {
+    margin-bottom: 48px;
+    padding: 0 16px;
+  }
+
+  .card {
+    padding: 36px 20px;
+    border-radius: 22px;
+  }
+
+  .glow {
+    width: 240px;
+    height: 240px;
+    top: -60px;
+    right: -30px;
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    letter-spacing: -1px;
+    margin-top: 10px;
+  }
+
+  .body {
+    font-size: 14.5px;
+    margin: 14px 0 24px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    font-size: 13.5px;
+    padding: 13px 22px;
+    border-radius: 11px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+}

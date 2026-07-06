@@ -45,3 +45,20 @@
     gap: 20px;
   }
 }
+
+@media (max-width: 480px) {
+  .card {
+    padding: 28px 18px;
+    border-radius: 20px;
+  }
+
+  .lead {
+    font-size: clamp(1.15rem, 5vw, 1.4rem);
+  }
+
+  .body {
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-top: 16px;
+  }
+}

@@ -90,3 +90,27 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .inner {
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+    border-radius: 9px;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .cta {
+    font-size: 12.5px;
+    padding: 8px 14px;
+    border-radius: 9px;
+  }
+}

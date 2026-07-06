@@ -117,3 +117,49 @@
     max-width: 440px;
   }
 }
+
+@media (max-width: 480px) {
+  .head {
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+
+  .card {
+    border-radius: 14px;
+  }
+
+  .banner {
+    height: 80px;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  .body {
+    padding: 14px 16px 16px;
+  }
+
+  .name {
+    font-size: 15.5px;
+  }
+
+  .desc {
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+
+  .placeholder {
+    min-height: 120px;
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
+  .placeholderTitle {
+    font-size: 13.5px;
+  }
+
+  .plus {
+    font-size: 24px;
+  }
+}

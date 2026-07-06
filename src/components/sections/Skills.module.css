@@ -140,3 +140,55 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .grid {
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .card {
+    padding: 18px 16px 20px;
+    border-radius: 16px;
+  }
+
+  .head {
+    margin-bottom: 14px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .cloud {
+    gap: 7px 8px;
+    padding: 8px 2px 4px;
+  }
+
+  .sizeSm {
+    font-size: 11px;
+    padding: 4px 9px;
+  }
+  .sizeSm img {
+    width: 13px;
+    height: 13px;
+  }
+
+  .sizeMd {
+    font-size: 12px;
+    padding: 5px 11px;
+  }
+  .sizeMd img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .sizeLg {
+    font-size: 13.5px;
+    padding: 7px 13px;
+  }
+  .sizeLg img {
+    width: 18px;
+    height: 18px;
+  }
+}

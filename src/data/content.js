@@ -234,7 +234,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     name: 'Swift',
     logo: '/logos/swift.svg',
     lang: 'swift',
-    level: 'Advanced Beginner',
+    level: 'Competent',
     desc: 'Understanding of iOS app lifecycles. Can build simple views and integrate basic REST APIs.',
     code: `struct ProfileView: View {
     @State private var user: User?
@@ -286,7 +286,7 @@ void shouldReturnSumOfTwoNumbers() {
     name: 'Dart',
     logo: '/logos/dart.svg',
     lang: 'dart',
-    level: 'Advanced Beginner',
+    level: 'Competent',
     desc: 'Familiar with Flutter widget trees. Can build basic cross-platform screens and manage simple state.',
     code: `class CounterText extends StatelessWidget {
   const CounterText({super.key, required this.count});

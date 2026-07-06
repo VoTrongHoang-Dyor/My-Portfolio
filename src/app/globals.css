@@ -96,6 +96,23 @@ h3 {
   display: none;
 }
 
+/* ── Mobile: tighten section spacing ─────────────────────────────────────── */
+@media (max-width: 480px) {
+  .section {
+    padding: 44px 16px;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    letter-spacing: -0.8px;
+  }
+
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 1.2px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

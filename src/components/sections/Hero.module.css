@@ -197,10 +197,101 @@
 @media (max-width: 880px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 64px;
+    gap: 48px;
   }
   .portraitCol {
     max-width: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 72px 16px 40px;
+    min-height: auto;
+    min-height: auto;
+  }
+
+  .grid {
+    gap: 36px;
+  }
+
+  .portraitCol {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .portraitFrame {
+    border-radius: 20px;
+  }
+
+  .portraitGlow {
+    inset: -18px;
+  }
+
+  .badge {
+    bottom: -10px;
+    left: -8px;
+    padding: 9px 12px;
+    border-radius: 12px;
+    gap: 8px;
+  }
+
+  .badgeIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    border-radius: 7px;
+  }
+
+  .badgeTitle {
+    font-size: 12px;
+  }
+
+  .badgeSub {
+    font-size: 10.5px;
+  }
+
+  .status {
+    padding: 5px 12px;
+    font-size: 11.5px;
+    gap: 7px;
+  }
+
+  .statusDot {
+    width: 6px;
+    height: 6px;
+    box-shadow: 0 0 0 3px rgba(124, 131, 255, 0.22);
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+    letter-spacing: -1.2px;
+    margin-top: 16px;
+  }
+
+  .subtitle {
+    font-size: 14.5px;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  .actions {
+    margin-top: 22px;
+    gap: 10px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    font-size: 13.5px;
+    padding: 12px 20px;
+    border-radius: 11px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .scrollHint {
+    margin-top: 36px;
   }
 }
 

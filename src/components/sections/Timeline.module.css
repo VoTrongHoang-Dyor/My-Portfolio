@@ -258,3 +258,81 @@
     padding: 24px 22px;
   }
 }
+
+@media (max-width: 480px) {
+  .section {
+    padding: 48px 16px 56px;
+  }
+
+  .card {
+    flex: 0 0 140px;
+    width: 140px;
+    height: 140px;
+    padding: 16px 14px;
+    border-radius: 16px;
+    gap: 8px;
+  }
+
+  .year {
+    font-size: 30px;
+    letter-spacing: -1px;
+  }
+
+  .cardTitle {
+    font-size: 12.5px;
+  }
+
+  .cardsRow {
+    gap: 16px;
+    padding: 0 2px;
+  }
+
+  .axisDots {
+    gap: 16px;
+  }
+
+  .dotSlot {
+    flex: 0 0 140px;
+    width: 140px;
+  }
+
+  .axisDot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .axis {
+    margin-top: 18px;
+    height: 20px;
+  }
+
+  .detail {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .detailYear {
+    font-size: 18px;
+  }
+
+  .detailTitle {
+    font-size: 15px;
+  }
+
+  .listItem {
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .detailWrap {
+    margin-top: 24px;
+  }
+
+  .stripWrap {
+    margin-top: 28px;
+  }
+
+  .sub {
+    font-size: 14px;
+  }
+}

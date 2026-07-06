@@ -97,3 +97,35 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .card {
+    padding: 22px 18px 24px;
+    border-radius: 16px;
+  }
+
+  .degree {
+    font-size: 20px;
+  }
+
+  .school {
+    font-size: 14.5px;
+  }
+
+  .note {
+    font-size: 13.5px;
+  }
+
+  .langName {
+    font-size: 14.5px;
+  }
+
+  .langLevel {
+    font-size: 12.5px;
+  }
+
+  .grid {
+    gap: 14px;
+    margin-top: 28px;
+  }
+}

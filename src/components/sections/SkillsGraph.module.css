@@ -60,3 +60,21 @@
     font-size: 12px;
   }
 }
+
+@media (max-width: 480px) {
+  .wrap {
+    margin-top: 24px;
+  }
+
+  .centerLabel {
+    font-size: 15px;
+  }
+
+  .catLabel {
+    font-size: 11px;
+  }
+
+  .skillLabel {
+    font-size: 10px;
+  }
+}

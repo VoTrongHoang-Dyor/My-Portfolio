@@ -284,3 +284,111 @@
     padding: 26px 22px;
   }
 }
+
+@media (max-width: 480px) {
+  .shell {
+    padding: 10px;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .list {
+    gap: 6px;
+    padding-bottom: 6px;
+  }
+
+  .item {
+    padding: 7px 10px 11px;
+    gap: 6px;
+    border-radius: 10px;
+  }
+
+  .logo {
+    width: 16px;
+    height: 16px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .itemName {
+    font-size: 12.5px;
+  }
+
+  .panel {
+    padding: 18px 14px;
+    min-height: auto;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .cardName {
+    font-size: clamp(1.3rem, 6vw, 1.7rem);
+    margin-top: 10px;
+    letter-spacing: -0.6px;
+  }
+
+  .cardDesc {
+    font-size: 13.5px;
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .badge {
+    font-size: 10.5px;
+    padding: 4px 9px;
+  }
+
+  .code {
+    margin-top: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .pre {
+    padding: 10px 12px;
+    font-size: 10.5px;
+    line-height: 1.5;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  .pre code {
+    white-space: pre;
+    display: block;
+    min-width: 0;
+  }
+
+  .codeBar {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .dots i {
+    width: 9px;
+    height: 9px;
+  }
+
+  .codeLang {
+    font-size: 9.5px;
+  }
+
+  .heading {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+  }
+
+  .block {
+    margin-top: 36px;
+  }
+
+  .progress {
+    left: 8px;
+    right: 8px;
+    bottom: 4px;
+  }
+}
