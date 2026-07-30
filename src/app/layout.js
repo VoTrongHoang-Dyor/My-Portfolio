@@ -1,5 +1,6 @@
 import { Space_Grotesk, Manrope } from "next/font/google";
-import { SITE } from "@/lib/site";
+import { buildProfileArtifact } from "@/profile/server.mjs";
+import { SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -14,20 +15,7 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-export const metadata = {
-  title: `${SITE.name} — ${SITE.role}`,
-  description:
-    "3D portfolio of Võ Trọng Hoàng — Freelance AI Automation Engineer specializing in n8n workflows, browser automation, and LLM-powered tools.",
-  applicationName: "Võ Trọng Hoàng — Portfolio",
-  authors: [{ name: SITE.name }],
-  openGraph: {
-    title: `${SITE.name} — ${SITE.role}`,
-    description:
-      "Freelance AI Automation Engineer — n8n workflows, browser automation, and LLM-powered tools.",
-    type: "website",
-  },
-  robots: { index: true, follow: true },
-};
+export const metadata = buildProfileArtifact("metadata", { origin: SITE_URL });
 
 export const viewport = {
   themeColor: "#070a18",
@@ -38,6 +26,20 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${manrope.variable}`}>
+      <head>
+        <link
+          rel="alternate"
+          type="application/json"
+          href="/profile.json"
+          title="Machine-readable candidate profile"
+        />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="/llms.txt"
+          title="AI-readable portfolio summary"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

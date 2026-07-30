@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { EMAIL_PARTS } from '@/lib/site';
+import { profile } from '@/profile/index.mjs';
 
 /**
  * ObfuscatedEmail
@@ -58,7 +58,7 @@ export default function ObfuscatedEmail({ label = 'Email me' }) {
     style.textContent = BUTTON_CSS;
 
     const link = document.createElement('a');
-    link.href = `mailto:${EMAIL_PARTS.user}@${EMAIL_PARTS.domain}`;
+    link.href = `mailto:${profile.identity.emailParts.user}@${profile.identity.emailParts.domain}`;
     link.textContent = label;
     link.rel = 'nofollow';
 

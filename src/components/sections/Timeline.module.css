@@ -10,117 +10,40 @@
   margin-bottom: 8px;
 }
 
-.sub {
-  font-size: 15.5px;
-  color: var(--text-muted);
-  margin: 12px 0 0;
-}
-
-/* ── Strip ─────────────────────────────────────────────────────────────── */
 .stripWrap {
-  margin-top: 44px;
+  margin-top: 36px;
 }
 
 .strip {
   overflow-x: auto;
   overflow-y: hidden;
-  cursor: grab;
-  padding: 28px 4px;
+  padding: 24px 4px 34px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
 }
 
-.track {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: max-content;
-  min-width: 100%;
-}
-
-/* Row holding the equal-size year cards */
 .cardsRow {
   display: flex;
-  align-items: center;
-  gap: 32px;
+  align-items: stretch;
+  gap: 14px;
+  width: max-content;
+  min-width: 100%;
   padding: 0 6px;
 }
 
-/* ── Axis below the cards ───────────────────────────────────────────────── */
-.axis {
-  position: relative;
-  height: 24px;
-  margin-top: 26px;
-  padding: 0 6px;
-}
-
-/* Bold bar + arrowhead as ONE striped element, so the diagonal stripes flow
-   continuously into the arrow (-->). The 14px-tall band runs across, then the
-   last 20px flares out to a tip via clip-path. */
-.axisBar {
-  position: absolute;
-  top: 50%;
-  left: 6px;
-  right: 6px;
-  height: 22px;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.2);
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 0.42) 0,
-    rgba(255, 255, 255, 0.42) 2px,
-    transparent 2px,
-    transparent 9px
-  );
-  clip-path: polygon(
-    0 4px,
-    calc(100% - 20px) 4px,
-    calc(100% - 20px) 0,
-    100% 11px,
-    calc(100% - 20px) 22px,
-    calc(100% - 20px) 18px,
-    0 18px
-  );
-  z-index: 1;
-}
-
-/* Evenly-spaced dots — one slot per year, mirroring the cards row metrics */
-.axisDots {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  height: 100%;
-}
-
-.dotSlot {
-  flex: 0 0 172px;
-  width: 172px;
-  display: flex;
-  justify-content: center;
-}
-
-.axisDot {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  border: 2px solid rgba(0, 0, 0, 0.25);
-  transition: background 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
-}
-
-/* ── Square cards (equal size) ─────────────────────────────────────────── */
 .card {
   position: relative;
-  z-index: 1;
-  flex: 0 0 172px;
-  width: 172px;
-  height: 172px;
+  flex: 0 0 204px;
+  width: 204px;
+  min-height: 174px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
   gap: 10px;
-  padding: 22px 20px;
+  padding: 22px 20px 18px;
   border-radius: 20px;
   text-align: left;
   font: inherit;
@@ -130,8 +53,13 @@
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   cursor: pointer;
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease,
-    box-shadow 0.28s ease, background 0.28s ease;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
 }
 
 .card:focus-visible {
@@ -140,7 +68,7 @@
 }
 
 .cardActive {
-  transform: scale(1.07);
+  transform: translateY(-6px);
   background: rgba(255, 255, 255, 0.09);
 }
 
@@ -158,7 +86,7 @@
   font-family: var(--font-display), sans-serif;
   font-weight: 600;
   font-size: 14.5px;
-  line-height: 1.3;
+  line-height: 1.35;
   letter-spacing: -0.2px;
   color: var(--text-muted);
 }
@@ -167,95 +95,184 @@
   color: var(--text);
 }
 
-/* ── Detail panel ──────────────────────────────────────────────────────── */
-.detailWrap {
-  margin-top: 36px;
-}
-
-.detail {
-  border-radius: 22px;
-  padding: 30px 32px;
-  min-height: 156px;
-  box-shadow: var(--shadow);
-}
-
-.detailHead {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-
-.detailYear {
-  font-family: var(--font-display), sans-serif;
+.openLabel {
+  margin-top: auto;
+  font-size: 11px;
   font-weight: 700;
-  font-size: 22px;
-  letter-spacing: -0.5px;
-}
-
-.detailTitle {
-  font-family: var(--font-display), sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  color: var(--text);
-}
-
-.detailTag {
-  font-size: 12px;
-  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.7px;
+  color: var(--text-faint);
 }
 
-.list {
-  margin: 0;
-  padding: 0;
+.modalDialog {
+  position: fixed;
+  inset: 0;
+  width: min(688px, calc(100vw - 32px));
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 24px;
+  border: 0;
+  color: var(--text);
+  background: transparent;
+  overflow: visible;
+}
+
+.modalDialog::backdrop {
+  background: rgba(1, 3, 12, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: backdropIn 0.24s ease both;
+}
+
+.modalFrame {
+  width: 100%;
+  filter: drop-shadow(0 34px 80px rgba(0, 0, 0, 0.68));
+}
+
+.modal {
+  position: relative;
+  width: min(640px, 100%);
+  max-height: min(78vh, 720px);
+  overflow-y: auto;
+  border-radius: 24px;
+  padding: 36px;
+  color: var(--text);
+  background: rgba(10, 13, 28, 0.96);
+  border: 1px solid var(--year-color);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--year-color) 35%, transparent);
+  animation: modalIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 34px;
+  right: 34px;
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: var(--year-color);
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: 300 26px/1 var(--font-body), sans-serif;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.closeButton:hover {
+  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--year-color);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--year-color);
+  outline-offset: 3px;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 48px;
+}
+
+.modalYear {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.6rem, 8vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--year-color);
+}
+
+.modalTag {
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--year-color) 55%, transparent);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--year-color);
+  background: color-mix(in srgb, var(--year-color) 11%, transparent);
+}
+
+.modalTitle {
+  margin-top: 18px;
+  padding-right: 42px;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.modalList {
+  margin-top: 26px;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 11px;
-  animation: fadeIn 0.35s ease;
+  gap: 15px;
 }
 
-.listItem {
+.modalListItem {
   display: flex;
-  gap: 11px;
-  font-size: 14.5px;
-  line-height: 1.5;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--text-muted);
 }
 
 .bulletDot {
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  margin-top: 9px;
   border-radius: 50%;
-  margin-top: 7px;
+  background: var(--year-color);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--year-color) 18%, transparent);
 }
 
-@keyframes fadeIn {
+@keyframes backdropIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .card,
-  .list {
-    transition: none;
-    animation: none;
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
   }
 }
 
-@media (max-width: 560px) {
-  .detail {
-    padding: 24px 22px;
+@media (max-width: 720px) {
+  .cardsRow::after {
+    content: '';
+    flex: 0 0 calc(50vw - 102px);
+  }
+
+  .cardsRow::before {
+    content: '';
+    flex: 0 0 calc(50vw - 102px);
   }
 }
 
@@ -264,75 +281,83 @@
     padding: 48px 16px 56px;
   }
 
+  .stripWrap {
+    margin-top: 24px;
+  }
+
+  .strip {
+    margin: 0 -16px;
+    padding: 20px 0 30px;
+  }
+
+  .cardsRow {
+    gap: 10px;
+    padding: 0;
+  }
+
   .card {
-    flex: 0 0 140px;
-    width: 140px;
-    height: 140px;
-    padding: 16px 14px;
-    border-radius: 16px;
-    gap: 8px;
+    flex-basis: 174px;
+    width: 174px;
+    min-height: 158px;
+    padding: 18px 16px 15px;
+    border-radius: 18px;
+  }
+
+  .cardsRow::after,
+  .cardsRow::before {
+    flex-basis: calc(50vw - 87px);
   }
 
   .year {
-    font-size: 30px;
+    font-size: 32px;
     letter-spacing: -1px;
   }
 
   .cardTitle {
-    font-size: 12.5px;
-  }
-
-  .cardsRow {
-    gap: 16px;
-    padding: 0 2px;
-  }
-
-  .axisDots {
-    gap: 16px;
-  }
-
-  .dotSlot {
-    flex: 0 0 140px;
-    width: 140px;
-  }
-
-  .axisDot {
-    width: 10px;
-    height: 10px;
-  }
-
-  .axis {
-    margin-top: 18px;
-    height: 20px;
-  }
-
-  .detail {
-    padding: 20px 16px;
-    border-radius: 16px;
-  }
-
-  .detailYear {
-    font-size: 18px;
-  }
-
-  .detailTitle {
-    font-size: 15px;
-  }
-
-  .listItem {
     font-size: 13px;
-    gap: 8px;
   }
 
-  .detailWrap {
-    margin-top: 24px;
+  .modalDialog {
+    inset: auto 0 0;
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px;
   }
 
-  .stripWrap {
-    margin-top: 28px;
+  .modal {
+    width: 100%;
+    max-height: 84vh;
+    border-radius: 22px;
+    padding: 30px 22px 28px;
   }
 
-  .sub {
+  .modal::before {
+    left: 24px;
+    right: 24px;
+  }
+
+  .modalTitle {
+    padding-right: 0;
+  }
+
+  .modalListItem {
     font-size: 14px;
+    line-height: 1.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip {
+    scroll-behavior: auto;
+  }
+
+  .card,
+  .closeButton {
+    transition: none;
+  }
+
+  .modalDialog::backdrop,
+  .modal {
+    animation: none;
   }
 }

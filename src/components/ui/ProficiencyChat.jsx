@@ -1,5 +1,7 @@
-import { proficiencyChat } from '@/data/content';
+import { profile } from '@/profile/index.mjs';
 import styles from './ProficiencyChat.module.css';
+
+const proficiencyChat = profile.skills.chat;
 
 /**
  * Programming proficiency shown as a WhatsApp-style chat — an honest take on

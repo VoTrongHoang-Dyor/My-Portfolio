@@ -1,4 +1,5 @@
-import { SITE, NAV_LINKS } from '@/lib/site';
+import Image from 'next/image';
+import { profile } from '@/profile/index.mjs';
 import styles from './Nav.module.css';
 
 export default function Nav() {
@@ -6,13 +7,21 @@ export default function Nav() {
     <nav className={styles.nav}>
       <div className={styles.inner}>
         <a href="#top" className={styles.brand}>
-          <span className={styles.logo}>{SITE.initials}</span>
-          <span className={styles.name}>{SITE.name}</span>
+          <Image
+            className={styles.logo}
+            src={profile.assets.portrait}
+            alt=""
+            aria-hidden="true"
+            width={38}
+            height={38}
+            priority
+          />
+          <span className={styles.name}>{profile.identity.name}</span>
         </a>
 
         <div className={styles.right}>
           <div className={styles.links}>
-            {NAV_LINKS.map(({ label, href }) => (
+            {profile.navigation.primary.map(({ label, href }) => (
               <a key={label} href={href} className={styles.link}>
                 {label}
               </a>

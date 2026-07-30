@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { languageProficiency } from '@/data/content';
+import { profile } from '@/profile/index.mjs';
 import styles from './SkillShowcase.module.css';
+
+const languageProficiency = profile.skills.proficiency;
 
 const AUTOPLAY_MS = 5000;
 
@@ -15,7 +17,6 @@ const LEVEL = {
 
 export default function SkillShowcase() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const len = languageProficiency.length;
   const current = languageProficiency[active];
   const tone = LEVEL[current.level] ?? LEVEL['Advanced Beginner'];
@@ -29,12 +30,8 @@ export default function SkillShowcase() {
         <h3 className={styles.heading}>How deep does each language go?</h3>
       </div>
 
-      {/* Hovering anywhere pauses the 5s auto-rotation */}
-      <div
-        className={styles.shell}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
+      {/* Auto-rotation continues while the pointer is inside the panel. */}
+      <div className={styles.shell}>
         <div className={styles.grid}>
           {/* Left — language list / mobile chip row */}
           <div className={styles.list} role="tablist" aria-label="Programming languages">
@@ -43,7 +40,7 @@ export default function SkillShowcase() {
               const isActive = i === active;
               return (
                 <button
-                  key={lang.name}
+                  key={lang.id}
                   type="button"
                   role="tab"
                   aria-selected={isActive}
@@ -71,7 +68,6 @@ export default function SkillShowcase() {
                         style={{
                           background: t.dot,
                           animationDuration: `${AUTOPLAY_MS}ms`,
-                          animationPlayState: paused ? 'paused' : 'running',
                         }}
                         onAnimationEnd={advance}
                       />

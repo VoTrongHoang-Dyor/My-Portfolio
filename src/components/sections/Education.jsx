@@ -1,4 +1,4 @@
-import { education, spokenLanguages } from '@/data/content';
+import { profile } from '@/profile/index.mjs';
 import styles from './Education.module.css';
 
 export default function Education() {
@@ -9,20 +9,28 @@ export default function Education() {
 
       <div className={styles.grid}>
         {/* Degree */}
-        <div className={`${styles.card} glass`}>
+        <div
+          className={`${styles.card} glass`}
+          data-reveal-item
+          style={{ '--reveal-delay': '0ms' }}
+        >
           <div className={styles.cardTag}>Education</div>
-          <h3 className={styles.degree}>{education.degree}</h3>
-          <p className={styles.school}>{education.school}</p>
-          <span className={styles.status}>{education.status}</span>
-          <p className={styles.note}>{education.note}</p>
+          <h3 className={styles.degree}>{profile.education.degree}</h3>
+          <p className={styles.school}>{profile.education.school}</p>
+          <span className={styles.status}>{profile.education.status}</span>
+          <p className={styles.note}>{profile.education.note}</p>
         </div>
 
         {/* Spoken languages */}
-        <div className={`${styles.card} glass`}>
+        <div
+          className={`${styles.card} glass`}
+          data-reveal-item
+          style={{ '--reveal-delay': '100ms' }}
+        >
           <div className={styles.cardTag}>Spoken languages</div>
           <ul className={styles.langs}>
-            {spokenLanguages.map((l) => (
-              <li key={l.name} className={styles.lang}>
+            {profile.spokenLanguages.map((l) => (
+              <li key={l.id} className={styles.lang}>
                 <span className={styles.langDot} style={{ background: l.accent }} />
                 <span className={styles.langName}>{l.name}</span>
                 <span className={styles.langLevel}>{l.level}</span>

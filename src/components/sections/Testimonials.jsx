@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { testimonials } from '@/data/content';
+import { profile } from '@/profile/index.mjs';
 import styles from './Testimonials.module.css';
 
 export default function Testimonials() {
@@ -9,8 +9,13 @@ export default function Testimonials() {
       <h2 className="section-title">Words from people I&apos;ve worked with</h2>
 
       <div className={styles.grid}>
-        {testimonials.map((t) => (
-          <figure key={t.role} className={`${styles.card} glass`}>
+        {profile.testimonials.map((t, index) => (
+          <figure
+            key={t.id}
+            className={`${styles.card} glass`}
+            data-reveal-item
+            style={{ '--reveal-delay': `${index * 100}ms` }}
+          >
             <span className={styles.quoteMark} style={{ color: t.accent }} aria-hidden="true">
               &ldquo;
             </span>

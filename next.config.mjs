@@ -31,6 +31,11 @@ const csp = [
 /** Security headers applied to every response. */
 const securityHeaders = [
   { key: 'Content-Security-Policy', value: csp },
+  {
+    key: 'Link',
+    value:
+      '</profile.json>; rel="alternate"; type="application/json", </llms.txt>; rel="alternate"; type="text/plain"',
+  },
   // Clickjacking protection (legacy + CSP frame-ancestors above)
   { key: 'X-Frame-Options', value: 'DENY' },
   // Block MIME-type sniffing
@@ -55,6 +60,11 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // The Codex in-app browser opens the local preview through 127.0.0.1.
+  // Allow its dev client so HMR never leaves the tab on a stale interaction bundle.
+  allowedDevOrigins: ['127.0.0.1'],
+  // Keep the local preview visually identical to the production portfolio.
+  devIndicators: false,
   // Don't advertise the framework version.
   poweredByHeader: false,
   async headers() {

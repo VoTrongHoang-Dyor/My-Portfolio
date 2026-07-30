@@ -19,8 +19,12 @@ export default function Skills() {
     <section id="skills" className="section">
       <div className="eyebrow">Toolbox</div>
       <h2 className="section-title">What I build with</h2>
-      <SkillsGraph />
-      <SkillShowcase />
+      <div data-reveal-item style={{ '--reveal-delay': '0ms' }}>
+        <SkillsGraph />
+      </div>
+      <div data-reveal-item style={{ '--reveal-delay': '100ms' }}>
+        <SkillShowcase />
+      </div>
     </section>
   );
 }

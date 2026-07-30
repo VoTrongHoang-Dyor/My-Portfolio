@@ -25,6 +25,35 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #aeb2bd #050505;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  min-height: 52px;
+  border: 2px solid #050505;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #e2e4e8 0%, #9a9faa 52%, #c9ccd2 100%);
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: #e4e6ea;
+}
+
+[id] {
+  scroll-margin-top: 82px;
 }
 
 html,
@@ -87,6 +116,40 @@ h3 {
   color: var(--text);
 }
 
+/* ── One-way scroll presentation effects ─────────────────────────────────── */
+.scroll-reveal-shell {
+  position: relative;
+  transform-origin: 50% 70%;
+  will-change: transform, opacity, filter;
+}
+
+.scroll-reveal-shell [data-reveal-item] {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translate3d(0, 58px, 0) scale(0.955);
+}
+
+.scroll-reveal-shell[data-revealed='true'] [data-reveal-item] {
+  animation: reveal-card 0.88s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.18s + var(--reveal-delay, 0ms));
+}
+
+@keyframes reveal-card {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translate3d(0, 58px, 0) scale(0.955);
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 /* ── Timeline horizontal scroller — hide scrollbar ───────────────────────── */
 .scroller {
   scrollbar-width: none;
@@ -116,5 +179,13 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .scroll-reveal-shell,
+  .scroll-reveal-shell [data-reveal-item] {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    animation: none !important;
   }
 }

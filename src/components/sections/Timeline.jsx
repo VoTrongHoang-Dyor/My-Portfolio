@@ -1,155 +1,263 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { timelineData } from '@/data/content';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { profile } from '@/profile/index.mjs';
 import styles from './Timeline.module.css';
 
-export default function Timeline() {
-  const stripRef = useRef(null);
-  const drag = useRef({ down: false, startX: 0, startScroll: 0, moved: false });
-  const [selected, setSelected] = useState(timelineData.length - 1);
-  const [hovered, setHovered] = useState(null);
+const timelineData = profile.journey;
 
-  const active = hovered ?? selected;
-  const activeYear = timelineData[active];
+function RollingYear({ value, play, delay }) {
+  const [displayValue, setDisplayValue] = useState(value);
 
-  // On mount, bring the selected (latest) year into view if the strip overflows.
   useEffect(() => {
-    const el = stripRef.current;
-    if (!el) return;
-    const card = el.querySelectorAll(`[data-card]`)[selected];
-    if (card && el.scrollWidth > el.clientWidth) {
-      card.scrollIntoView({ inline: 'center', block: 'nearest' });
-    }
-    // run once on mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!play) return undefined;
+
+    let frame;
+    let timeout;
+    const duration = 1050;
+    const startValue = 2000;
+
+    timeout = window.setTimeout(() => {
+      const startedAt = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min(1, (now - startedAt) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setDisplayValue(Math.round(startValue + (value - startValue) * eased));
+
+        if (progress < 1) frame = requestAnimationFrame(tick);
+      };
+
+      frame = requestAnimationFrame(tick);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeout);
+      cancelAnimationFrame(frame);
+    };
+  }, [delay, play, value]);
+
+  return <span aria-hidden="true">{displayValue}</span>;
+}
+
+export default function Timeline() {
+  const sectionRef = useRef(null);
+  const stripRef = useRef(null);
+  const dialogRef = useRef(null);
+  const cardRefs = useRef([]);
+  const [focused, setFocused] = useState(timelineData.length - 1);
+  const [hovered, setHovered] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [animateYears, setAnimateYears] = useState(false);
+
+  const active = hovered ?? focused;
+  const selectedYear = selected === null ? null : timelineData[selected];
+
+  const scrollToYear = useCallback((index, behavior = 'smooth') => {
+    const strip = stripRef.current;
+    const card = cardRefs.current[index];
+    if (!strip || !card) return;
+
+    const stripRect = strip.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const left =
+      strip.scrollLeft +
+      cardRect.left -
+      stripRect.left -
+      (strip.clientWidth - card.offsetWidth) / 2;
+    strip.scrollTo({ left: Math.max(0, left), behavior });
   }, []);
 
-  // ── Drag-to-scroll (also distinguishes a drag from a click) ──────────────
-  const onPointerDown = (e) => {
-    const el = stripRef.current;
-    drag.current = { down: true, startX: e.clientX, startScroll: el.scrollLeft, moved: false };
-    el.style.cursor = 'grabbing';
-    try {
-      el.setPointerCapture(e.pointerId);
-    } catch {
-      /* noop */
+  useEffect(() => {
+    const latest = timelineData.length - 1;
+    // Override CSS smooth scrolling during mount so cards never move underneath
+    // a user's first trackpad click.
+    scrollToYear(latest, 'instant');
+  }, [scrollToYear]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || animateYears) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setAnimateYears(true);
+        observer.disconnect();
+      },
+      { threshold: 0.22 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [animateYears]);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    if (selectedYear && !dialog.open) {
+      dialog.showModal();
+    } else if (!selectedYear && dialog.open) {
+      dialog.close();
     }
-  };
-  const onPointerMove = (e) => {
-    if (!drag.current.down) return;
-    const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 5) drag.current.moved = true;
-    stripRef.current.scrollLeft = drag.current.startScroll - dx;
-  };
-  const onPointerUp = () => {
-    if (!drag.current.down) return;
-    drag.current.down = false;
-    if (stripRef.current) stripRef.current.style.cursor = 'grab';
+  }, [selectedYear]);
+
+  useEffect(() => {
+    if (!selectedYear) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedYear]);
+
+  const openYear = (index) => {
+    setFocused(index);
+    scrollToYear(index);
+    setSelected(index);
   };
 
-  const onCardClick = (i) => {
-    if (drag.current.moved) return; // it was a drag, not a click
-    setSelected(i);
+  const closeDialog = () => setSelected(null);
+
+  const closeFromBackdrop = (event) => {
+    const dialog = event.currentTarget;
+    const bounds = dialog.getBoundingClientRect();
+    const isInside =
+      event.clientX >= bounds.left &&
+      event.clientX <= bounds.right &&
+      event.clientY >= bounds.top &&
+      event.clientY <= bounds.bottom;
+
+    if (!isInside) closeDialog();
+  };
+
+  const onCardKeyDown = (event, index) => {
+    const direction =
+      event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+    if (!direction) return;
+
+    event.preventDefault();
+    const next = Math.max(0, Math.min(timelineData.length - 1, index + direction));
+    setFocused(next);
+    scrollToYear(next);
+    cardRefs.current[next]?.focus();
   };
 
   return (
-    <section id="timeline" className={styles.section}>
+    <section ref={sectionRef} id="timeline" className={styles.section}>
       <div className={styles.header}>
         <div className="eyebrow">The journey</div>
         <h2 className="section-title">From creator to automation engineer</h2>
-        <p className={styles.sub}>Drag the timeline · hover or tap a year to read more.</p>
       </div>
 
-      {/* ── Horizontal, draggable timeline strip ── */}
-      <div className={styles.stripWrap}>
+      <div
+        className={styles.stripWrap}
+        data-reveal-item
+        style={{ '--reveal-delay': '0ms' }}
+      >
         <div
           ref={stripRef}
           className={`scroller ${styles.strip}`}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerLeave={onPointerUp}
         >
-          <div className={styles.track}>
-            {/* Row of equal-size year cards */}
-            <div className={styles.cardsRow}>
-              {timelineData.map((d, i) => {
-                const isActive = i === active;
-                const isSelected = i === selected;
-                return (
-                  <button
-                    key={d.year}
-                    data-card=""
-                    type="button"
-                    className={`${styles.card} ${isActive ? styles.cardActive : ''}`}
-                    style={
-                      isActive
-                        ? {
-                            borderColor: d.dotHue,
-                            boxShadow: `0 0 0 1px ${d.dotHue}, 0 18px 50px -16px ${d.dotHue}66`,
-                          }
-                        : undefined
-                    }
-                    aria-pressed={isSelected}
-                    onMouseEnter={() => setHovered(i)}
-                    onMouseLeave={() => setHovered(null)}
-                    onClick={() => onCardClick(i)}
+          <div className={styles.cardsRow}>
+            {timelineData.map((item, index) => {
+              const isActive = index === active;
+              const isSelected = index === selected;
+              return (
+                <button
+                  ref={(node) => {
+                    cardRefs.current[index] = node;
+                  }}
+                  key={item.id}
+                  type="button"
+                  className={`${styles.card} ${isActive ? styles.cardActive : ''}`}
+                  style={
+                    isActive
+                      ? {
+                          borderColor: item.dotHue,
+                          boxShadow: `0 0 0 1px ${item.dotHue}, 0 18px 46px -20px ${item.dotHue}99`,
+                        }
+                      : undefined
+                  }
+                  aria-haspopup="dialog"
+                  aria-controls="timeline-detail-dialog"
+                  aria-expanded={isSelected}
+                  onFocus={() => setFocused(index)}
+                  onMouseEnter={() => setHovered(index)}
+                  onMouseLeave={() => setHovered(null)}
+                  onClick={() => openYear(index)}
+                  onKeyDown={(event) => onCardKeyDown(event, index)}
+                >
+                  <span
+                    className={styles.year}
+                    aria-label={item.year}
+                    style={{ color: isActive ? item.dotHue : undefined }}
                   >
-                    <span className={styles.year} style={{ color: isActive ? 'var(--text)' : undefined }}>
-                      {d.year}
-                    </span>
-                    <span className={styles.cardTitle}>{d.title}</span>
-                  </button>
-                );
-              })}
-            </div>
+                    <RollingYear
+                      value={Number(item.year)}
+                      play={animateYears}
+                      delay={180 + index * 90}
+                    />
+                  </span>
+                  <span className={styles.cardTitle}>{item.title}</span>
+                  <span className={styles.openLabel}>View details</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
-            {/* Bold, diagonally-striped axis below the cards: one dot per year, arrow at the end */}
-            <div className={styles.axis} aria-hidden="true">
-              <span className={styles.axisBar} />
-              <div className={styles.axisDots}>
-                {timelineData.map((d, i) => {
-                  const isActive = i === active;
-                  return (
-                    <span className={styles.dotSlot} key={d.year}>
-                      <span
-                        className={styles.axisDot}
-                        style={{
-                          background: isActive ? d.dotHue : 'rgba(255,255,255,.32)',
-                          boxShadow: isActive ? `0 0 0 4px ${d.dotHue}33` : 'none',
-                          transform: isActive ? 'scale(1.3)' : 'none',
-                        }}
-                      />
-                    </span>
-                  );
-                })}
+      <dialog
+        ref={dialogRef}
+        id="timeline-detail-dialog"
+        className={styles.modalDialog}
+        aria-labelledby="timeline-dialog-title"
+        onPointerDown={closeFromBackdrop}
+        onCancel={(event) => {
+          event.preventDefault();
+          closeDialog();
+        }}
+        onClose={closeDialog}
+      >
+        {selectedYear && (
+          <div className={styles.modalFrame}>
+            <div
+              className={styles.modal}
+              style={{ '--year-color': selectedYear.dotHue }}
+            >
+              <button
+                type="button"
+                className={styles.closeButton}
+                aria-label="Close year details"
+                onClick={closeDialog}
+                autoFocus
+              >
+                ×
+              </button>
+
+              <div className={styles.modalHeader}>
+                <span className={styles.modalYear}>{selectedYear.year}</span>
+                <span className={styles.modalTag}>{selectedYear.tag}</span>
               </div>
+              <h3 id="timeline-dialog-title" className={styles.modalTitle}>
+                {selectedYear.title}
+              </h3>
+              <ul className={styles.modalList}>
+                {selectedYear.bullets.map((bullet) => (
+                  <li key={bullet} className={styles.modalListItem}>
+                    <span className={styles.bulletDot} />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── Detail panel for the active year ── */}
-      <div className={styles.detailWrap}>
-        <div className={`${styles.detail} glass`}>
-          <div className={styles.detailHead}>
-            <span className={styles.detailYear}>{activeYear.year}</span>
-            <span className={styles.detailTitle}>{activeYear.title}</span>
-            <span className={styles.detailTag} style={{ color: activeYear.dotHue }}>
-              {activeYear.tag}
-            </span>
-          </div>
-          <ul key={active} className={styles.list}>
-            {activeYear.bullets.map((b) => (
-              <li key={b} className={styles.listItem}>
-                <span className={styles.bulletDot} style={{ background: activeYear.dotHue }} />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+        )}
+      </dialog>
     </section>
   );
 }

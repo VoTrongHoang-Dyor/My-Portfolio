@@ -22,14 +22,9 @@
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #7c83ff, #4a3fd6);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display), sans-serif;
-  font-weight: 700;
-  font-size: 14px;
+  display: block;
+  object-fit: cover;
+  object-position: center 20%;
 }
 
 .copy {
@@ -103,7 +98,6 @@
   .logo {
     width: 28px;
     height: 28px;
-    font-size: 12px;
     border-radius: 8px;
   }
 

@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { skillCategories } from '@/data/content';
+import { profile } from '@/profile/index.mjs';
 import styles from './SkillsGraph.module.css';
+
+const skillCategories = profile.skills.categories;
 
 /* ── Layout (SVG viewBox units; the SVG scales to its container) ─────────── */
 const VW = 1000;
@@ -45,14 +47,14 @@ function buildGraph() {
     const catIndex = nodes.length;
     const cx = CX + Math.cos(angle) * R_CAT_X + (rand() - 0.5) * 24;
     const cy = CY + Math.sin(angle) * R_CAT_Y + (rand() - 0.5) * 24;
-    nodes.push({ id: cat.label, label: cat.label, type: 'category', accent: cat.accent, x: cx, y: cy });
+    nodes.push({ id: cat.id, label: cat.label, type: 'category', accent: cat.accent, x: cx, y: cy });
     links.push({ s: 0, t: catIndex, accent: cat.accent, len: Math.hypot(R_CAT_X, R_CAT_Y) * 0.6, k: 0.03 });
 
     const m = cat.skills.length;
     cat.skills.forEach((s, si) => {
       const sa = angle + (si - (m - 1) / 2) * 0.5;
       nodes.push({
-        id: `${cat.label}/${s.name}`,
+        id: s.id,
         label: s.name,
         type: 'skill',
         accent: cat.accent,

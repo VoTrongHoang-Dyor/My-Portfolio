@@ -1,18 +1,26 @@
-import { SITE, FOOTER_LINKS, SUPPORT_LINKS } from '@/lib/site';
+import Image from 'next/image';
+import { profile } from '@/profile/index.mjs';
 import styles from './Footer.module.css';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.brand}>
-        <span className={styles.logo}>{SITE.initials}</span>
-        <span className={styles.copy}>{SITE.copyright}</span>
+        <Image
+          className={styles.logo}
+          src={profile.assets.portrait}
+          alt=""
+          aria-hidden="true"
+          width={34}
+          height={34}
+        />
+        <span className={styles.copy}>{profile.identity.copyright}</span>
       </div>
       <div className={styles.right}>
         <div className={styles.support}>
-          {SUPPORT_LINKS.map(({ label, href, icon }) => (
+          {profile.supportLinks.map(({ id, label, href, icon }) => (
             <a
-              key={label}
+              key={id}
               href={href}
               className={styles.supportLink}
               target="_blank"
@@ -33,7 +41,7 @@ export default function Footer() {
           ))}
         </div>
         <div className={styles.links}>
-          {FOOTER_LINKS.map(({ label, href }) => (
+          {profile.navigation.footer.map(({ label, href }) => (
             <a key={label} href={href} className={styles.link}>
               {label}
             </a>
