@@ -40,13 +40,16 @@ export default function About() {
               <span className={styles.accent}>{copy.aboutLeadEmphasis}</span>
               {copy.aboutLeadSuffix}
             </p>
-            <p className={styles.body}>
-              {copy.aboutBody} {copy.aboutAudienceLead}{' '}
-              <strong>{copy.aboutDeveloperAudience}</strong>
-              {copy.aboutDeveloperTail}
-              <strong>{copy.aboutTeamAudience}</strong>
-              {copy.aboutTeamTail}
-            </p>
+            {copy.aboutBody.map((paragraph) => (
+              <p key={paragraph} className={styles.body}>
+                {paragraph}
+              </p>
+            ))}
+            <div className={styles.closing}>
+              {copy.aboutClosing.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>

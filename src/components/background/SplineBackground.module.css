@@ -39,8 +39,8 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  color: #cfd0ff;
-  background: radial-gradient(120% 120% at 50% 40%, #101428 0%, #070a18 70%);
+  color: #111318;
+  background: #ffffff;
 }
 
 .thinkingDots {
@@ -56,25 +56,25 @@
   height: 13px;
   border-radius: 50%;
   animation: thinking 1.25s ease-in-out infinite;
-  box-shadow: 0 10px 26px currentColor;
+  box-shadow: 0 6px 16px -6px currentColor;
 }
 
 .thinkingDots span:nth-child(1) {
   color: #d9622b;
   background: #d9622b;
-  animation-delay: -0.36s;
+  animation-delay: -0.45s;
 }
 
 .thinkingDots span:nth-child(2) {
   color: #e14f62;
   background: #e14f62;
-  animation-delay: -0.24s;
+  animation-delay: -0.3s;
 }
 
 .thinkingDots span:nth-child(3) {
   color: #da5597;
   background: #da5597;
-  animation-delay: -0.12s;
+  animation-delay: -0.15s;
 }
 
 .thinkingDots span:nth-child(4) {
@@ -85,18 +85,18 @@
 .loaderText {
   font-size: 14px;
   letter-spacing: 0.04em;
-  opacity: 0.8;
+  color: #626772;
 }
 
 @keyframes thinking {
   0%,
   60%,
   100% {
-    transform: translateY(7px);
-    opacity: 0.45;
+    transform: translateY(8px);
+    opacity: 0.4;
   }
   30% {
-    transform: translateY(-9px);
+    transform: translateY(-12px);
     opacity: 1;
   }
 }

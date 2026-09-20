@@ -39,13 +39,16 @@
   flex-wrap: wrap;
 }
 
+.social,
 .support {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.supportLink {
+/* Shared icon chip — used by the contact links (GitHub / LinkedIn / Email) and
+   the support links (Ko-fi / PayPal). */
+.iconLink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -53,15 +56,18 @@
   height: 38px;
   border-radius: 10px;
   border: 1px solid var(--glass-border);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  color: var(--text-muted);
+  transition: transform 0.2s ease, border-color 0.2s ease,
+    background 0.2s ease, color 0.2s ease;
 }
-.supportLink:hover {
+.iconLink:hover {
   transform: translateY(-2px);
   border-color: var(--text);
+  color: var(--text);
   background: rgba(255, 255, 255, 0.05);
 }
 
-.supportIcon {
+.icon {
   width: 20px;
   height: 20px;
   object-fit: contain;
@@ -111,13 +117,13 @@
     gap: 16px;
   }
 
-  .supportLink {
+  .iconLink {
     width: 34px;
     height: 34px;
     border-radius: 8px;
   }
 
-  .supportIcon {
+  .icon {
     width: 17px;
     height: 17px;
   }

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { profile } from '@/profile/index.mjs';
+import { GitHubIcon, LinkedInIcon } from '@/components/ui/SocialIcons';
 import styles from './Nav.module.css';
 
 export default function Nav() {
@@ -27,6 +28,29 @@ export default function Nav() {
               </a>
             ))}
           </div>
+          <div className={styles.social}>
+            <a
+              href={profile.identity.github}
+              className={styles.socialLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub"
+              aria-label="GitHub"
+            >
+              <GitHubIcon className={styles.socialIcon} />
+            </a>
+            <a
+              href={profile.identity.linkedin}
+              className={styles.socialLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon className={styles.socialIcon} />
+            </a>
+          </div>
+
           <a href="#contact" className={styles.cta}>
             Get in touch
           </a>

@@ -119,10 +119,11 @@ function machineProfile(source, origin) {
 
 function buildMetadata(source, origin) {
   const { identity, messaging, assets } = source;
+  const title = `${identity.name} | ${identity.headline}`;
 
   return {
     metadataBase: new URL(normalizeOrigin(origin)),
-    title: `${identity.name} | Junior AI Automation Engineer`,
+    title,
     description: messaging.metadataDescription,
     applicationName: `${identity.name} — Portfolio`,
     authors: [{ name: identity.name, url: normalizeOrigin(origin) }],
@@ -130,7 +131,10 @@ function buildMetadata(source, origin) {
     category: 'technology',
     keywords: [
       'AI Automation Engineer',
-      'AI Agent Developer',
+      'Automation Engineer',
+      'Solutions Engineer',
+      'Systems Builder',
+      'Systems Thinking',
       'Workflow Automation',
       'Python Automation',
       'AI Integration',
@@ -138,13 +142,12 @@ function buildMetadata(source, origin) {
       'MCP Developer',
       'RAG Application',
       'n8n Automation',
-      'Product Builder',
     ],
     alternates: {
       canonical: '/',
     },
     openGraph: {
-      title: `${identity.name} | Junior AI Automation Engineer`,
+      title,
       description: messaging.openGraphDescription,
       url: '/',
       siteName: `${identity.name} Portfolio`,
@@ -155,13 +158,13 @@ function buildMetadata(source, origin) {
           url: assets.portrait,
           width: 1024,
           height: 1024,
-          alt: `${identity.name}, Junior AI Automation Engineer`,
+          alt: `${identity.name}, ${identity.headline}`,
         },
       ],
     },
     twitter: {
       card: 'summary',
-      title: `${identity.name} | Junior AI Automation Engineer`,
+      title,
       description: messaging.twitterDescription,
       images: [assets.portrait],
     },
@@ -275,7 +278,7 @@ function buildJsonLd(source, origin) {
         '@type': 'ProfilePage',
         '@id': `${siteUrl}/#profile`,
         url: siteUrl,
-        name: `${machine.candidate.name} — AI Automation Portfolio`,
+        name: `${machine.candidate.name} — Systems & Automation Portfolio`,
         description: machine.candidate.summary,
         inLanguage: 'en',
         isPartOf: { '@id': `${siteUrl}/#website` },

@@ -1,16 +1,16 @@
 <!-- Generated from src/profile/source.mjs. Run `npm run profile:write` to update. -->
 
-# Võ Trọng Hoàng — AI Automation Engineer
+# Võ Trọng Hoàng — Systems Builder
 
-> *"Builder mindset — Ships products, not slides."*
+> *"Good technology starts with a good understanding of the problem."*
 
-Freelance AI Automation Engineer specializing in **n8n workflows**, browser automation, and LLM-powered tools — turning repetitive work into reliable systems.
+Systems Builder — **Automation • Software • AI • Product**. I start with the problem, not the technology, and build practical systems with software, automation, and AI when they genuinely improve the outcome.
 
 ## 👤 About
 
-I started with content & code, fell for automation, and now I design AI systems end-to-end — from discovering the pain point to shipping the solution.
+I start with the problem, not the technology.
 
-Comfortable across Python and C#, fluent in n8n and browser automation, and obsessed with giving LLMs and developers the context they need to do meaningful work — whether for individual developers or entire teams.
+I look at how work actually happens, where friction and unnecessary complexity come from, and where better systems can create leverage. From there, I design and build practical solutions using software, automation, and AI when they genuinely improve the outcome — deciding what should be automated, what should remain human, and how a system can stay useful as it grows.
 
 ---
 
@@ -120,9 +120,9 @@ MCP-based long-term context management so LLMs remember what matters.
 
 ## 📬 Contact
 
-**Got a workflow worth automating?**
+**Have a problem worth solving?**
 
-Whether you're a developer who needs reliable tooling or a team drowning in repetitive tasks, I'd love to hear about it.
+If something in your work is slow, manual, or harder than it needs to be, I'd like to hear about it — whether you're an engineer who needs reliable tooling or a team buried in repetitive work.
 
 📧 [votronghoang.dy@gmail.com](mailto:votronghoang.dy@gmail.com)
 
@@ -138,4 +138,4 @@ If my work or projects have helped you, consider supporting me — it keeps the 
 - ☕ Ko-fi — https://ko-fi.com/tronghoang_dyor
 - 💸 PayPal — https://paypal.me/TrongHoangDyor
 
-© 2026 Võ Trọng Hoàng — AI Automation Engineer
+© 2026 Võ Trọng Hoàng — Systems Builder

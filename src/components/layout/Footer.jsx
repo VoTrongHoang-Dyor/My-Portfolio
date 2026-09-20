@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { profile } from '@/profile/index.mjs';
+import { GitHubIcon, LinkedInIcon } from '@/components/ui/SocialIcons';
+import SocialEmailLink from '@/components/ui/SocialEmailLink';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -17,19 +19,47 @@ export default function Footer() {
         <span className={styles.copy}>{profile.identity.copyright}</span>
       </div>
       <div className={styles.right}>
+        {/* Contact links — icon only; the label lives in title/aria-label */}
+        <div className={styles.social}>
+          <a
+            href={profile.identity.github}
+            className={styles.iconLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub"
+            aria-label="GitHub"
+          >
+            <GitHubIcon className={styles.icon} />
+          </a>
+          <a
+            href={profile.identity.linkedin}
+            className={styles.iconLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn"
+            aria-label="LinkedIn"
+          >
+            <LinkedInIcon className={styles.icon} />
+          </a>
+          <SocialEmailLink
+            className={styles.iconLink}
+            iconClassName={styles.icon}
+          />
+        </div>
+
         <div className={styles.support}>
           {profile.supportLinks.map(({ id, label, href, icon }) => (
             <a
               key={id}
               href={href}
-              className={styles.supportLink}
+              className={styles.iconLink}
               target="_blank"
               rel="noopener noreferrer"
               title={label}
               aria-label={label}
             >
               <img
-                className={styles.supportIcon}
+                className={styles.icon}
                 src={icon}
                 alt=""
                 aria-hidden="true"
@@ -40,6 +70,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
+
         <div className={styles.links}>
           {profile.navigation.footer.map(({ label, href }) => (
             <a key={label} href={href} className={styles.link}>

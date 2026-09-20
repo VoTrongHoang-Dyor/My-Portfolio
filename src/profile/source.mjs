@@ -2,79 +2,76 @@ const identity = {
   id: 'vo-trong-hoang',
   name: 'Võ Trọng Hoàng',
   careerLevel: 'Junior',
-  role: 'AI Automation Engineer',
-  headline: 'Junior AI Automation Engineer and AI Agent Developer',
-  currentRole: 'Freelance AI Automation Engineer',
+  role: 'Systems Builder',
+  headline: 'AI Automation & Systems Builder',
+  currentRole: 'Freelance Systems Builder',
   email: 'votronghoang.dy@gmail.com',
   github: 'https://github.com/VoTrongHoang-Dyor',
   linkedin: 'https://www.linkedin.com/in/tronghoang-dyor',
-  copyright: '© 2026 Võ Trọng Hoàng — AI Automation Engineer',
+  copyright: '© 2026 Võ Trọng Hoàng — Systems Builder',
+  // Kept deliberately narrow: one core identity plus one adjacent role.
+  // Broadening this list dilutes the narrative instead of widening reach.
   targetRoles: [
     'AI Automation Engineer',
-    'AI Agent Developer',
-    'Automation Developer',
-    'Product Builder',
-    'Junior Python Developer',
+    'Automation Engineer',
+    'Solutions Engineer',
   ],
   coreStrengths: [
+    'System Thinking',
+    'Product Thinking',
+    'Workflow Automation',
     'AI Automation',
     'AI Agents',
-    'Workflow Automation',
-    'Python',
     'Model Context Protocol (MCP)',
     'Retrieval-Augmented Generation (RAG)',
-    'Product Thinking',
-    'System Thinking',
+    'Python',
   ],
 };
 
 const messaging = {
   candidateSummary:
-    'Junior product-minded builder focused on AI automation, AI agents, workflow automation, Python, Model Context Protocol, Retrieval-Augmented Generation, and practical product development. Builds independent projects that turn repetitive work and context-management problems into structured systems.',
+    'Builder focused on understanding problems and designing simpler, more scalable systems. Works across workflow automation, APIs, browser automation, AI agents, Model Context Protocol, and Retrieval-Augmented Generation, choosing software, automation, and AI based on the problem rather than the tool. Building toward the intersection of engineering, systems thinking, product, and business.',
   metadataDescription:
-    'Portfolio of Võ Trọng Hoàng, a junior AI Automation Engineer building Python and n8n workflows, AI agents, MCP context tools, and RAG applications.',
+    'Portfolio of Võ Trọng Hoàng — AI Automation & Systems Builder. Turns complex and repetitive work into simpler systems using automation, software, and AI.',
   openGraphDescription:
-    'Junior AI automation and product builder working with Python, n8n, AI agents, Model Context Protocol, and RAG applications.',
+    'AI Automation & Systems Builder working across workflow automation, APIs, browser automation, AI agents, and Model Context Protocol.',
   twitterDescription:
-    'Python automation, n8n workflows, AI agents, MCP context tools, and RAG applications.',
+    'Systems Builder — automation, software, AI, and product thinking for problems worth solving.',
   web: {
-    heroTitle: 'I build AI agents & automation that do the work.',
-    heroSubtitleLead:
-      'Freelance AI Automation Engineer specializing in ',
-    heroSubtitleEmphasis: 'n8n workflows',
-    heroSubtitleTail:
-      ', browser automation, and LLM-powered tools — turning repetitive work into reliable systems.',
+    heroTitle: 'I build systems that make complex work simpler.',
+    heroSubtitleLead: '',
+    heroSubtitleEmphasis: 'Systems Builder',
+    heroSubtitleTail: ' | Automation • Software • AI • Product',
     builderTitle: 'Builder mindset',
     builderSubtitle: 'Ships products, not slides',
-    aboutLeadPrefix:
-      'I started with content & code, fell for automation, and now I design AI systems end-to-end — from ',
-    aboutLeadEmphasis: 'discovering the pain point',
-    aboutLeadSuffix: ' to shipping the workflow that solves it.',
-    aboutBody:
-      'Comfortable across Python and C#, fluent in n8n and browser automation, and obsessed with giving LLMs the context they need to be genuinely useful.',
-    aboutAudienceLead: 'I build for two crowds:',
-    aboutDeveloperAudience: 'developers',
-    aboutDeveloperTail: ' who want clean, extensible tooling, and ',
-    aboutTeamAudience: 'teams',
-    aboutTeamTail: ' who just want the busywork gone.',
-    contactTitle: 'Got a workflow worth automating?',
+    aboutLeadPrefix: 'I start with the ',
+    aboutLeadEmphasis: 'problem',
+    aboutLeadSuffix: ', not the technology.',
+    aboutBody: [
+      'I look at how work actually happens, where friction and unnecessary complexity come from, and where better systems can create leverage. From there, I design and build practical solutions using software, automation, and AI when they genuinely improve the outcome.',
+      "My work spans workflow automation, APIs, browser automation, AI agents, MCP, and tools such as Python, n8n, and Make. But the technology is only part of the work. I'm equally interested in understanding processes, making good trade-offs, and deciding what should be automated, what should remain human, and how a system can stay useful as it grows.",
+    ],
+    aboutClosing: [
+      'I care about outcomes over novelty: less unnecessary work, better processes, and systems that create durable value.',
+      "I'm building toward the intersection of engineering, systems thinking, product, and business — with the long-term goal of creating products and systems around problems worth solving.",
+    ],
+    contactTitle: 'Have a problem worth solving?',
     contactBody:
-      "Whether you're a developer who needs reliable tooling or a team drowning in repetitive tasks, I'd love to hear about it.",
-    workMeta: '2025–2026 · Personal AI products',
+      "If something in your work is slow, manual, or harder than it needs to be, I'd like to hear about it — whether you're an engineer who needs reliable tooling or a team buried in repetitive work.",
+    workMeta: '2025–2026 · Personal products & systems',
   },
   readme: {
-    motto: 'Builder mindset — Ships products, not slides.',
+    motto: 'Good technology starts with a good understanding of the problem.',
     intro:
-      'Freelance AI Automation Engineer specializing in **n8n workflows**, browser automation, and LLM-powered tools — turning repetitive work into reliable systems.',
-    aboutLead:
-      'I started with content & code, fell for automation, and now I design AI systems end-to-end — from discovering the pain point to shipping the solution.',
+      'Systems Builder — **Automation • Software • AI • Product**. I start with the problem, not the technology, and build practical systems with software, automation, and AI when they genuinely improve the outcome.',
+    aboutLead: 'I start with the problem, not the technology.',
     aboutBody:
-      'Comfortable across Python and C#, fluent in n8n and browser automation, and obsessed with giving LLMs and developers the context they need to do meaningful work — whether for individual developers or entire teams.',
+      'I look at how work actually happens, where friction and unnecessary complexity come from, and where better systems can create leverage. From there, I design and build practical solutions using software, automation, and AI when they genuinely improve the outcome — deciding what should be automated, what should remain human, and how a system can stay useful as it grows.',
     portfolioNote:
       '📌 Portfolio actively updated — more projects coming soon.',
-    contactTitle: 'Got a workflow worth automating?',
+    contactTitle: 'Have a problem worth solving?',
     contactBody:
-      "Whether you're a developer who needs reliable tooling or a team drowning in repetitive tasks, I'd love to hear about it.",
+      "If something in your work is slow, manual, or harder than it needs to be, I'd like to hear about it — whether you're an engineer who needs reliable tooling or a team buried in repetitive work.",
     supportIntro:
       'If my work or projects have helped you, consider supporting me — it keeps the side projects shipping.',
   },
